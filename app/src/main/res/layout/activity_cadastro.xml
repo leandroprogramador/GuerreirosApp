@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    app:theme="@style/LoginTheme"
+    tools:context="com.leandro.guerreirosapp.LoginActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        />
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/my_toolbar"
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_edit_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+      >
+
+        <EditText
+            android:id="@+id/edituser"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_edit_user"
+        android:id="@+id/textInputEmail">
+
+        <EditText
+            android:id="@+id/edit_email"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+    android:id="@+id/textInputSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textInputEmail"
+        >
+
+    <EditText
+        android:id="@+id/edit_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/senha"
+        android:inputType="textPassword" />
+</android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textConfirmInputSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInputSenha">
+
+        <EditText
+            android:id="@+id/edit_conf_senha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/conf_senha"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textConfirmInputSenha"
+        android:text="Permissões: "
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/txtPermissoes"
+         />
+
+
+    <CheckBox
+        android:id="@+id/chkAlunos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alunos"
+        android:textSize="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/txtPermissoes" />
+
+        <CheckBox
+            android:id="@+id/chkProfessores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Professores"
+            android:textSize="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/chkAlunos" />
+
+
+
+        <CheckBox
+            android:id="@+id/chkPresenças"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lista de Presenças"
+            android:textSize="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/chkProfessores" />
+
+        <CheckBox
+            android:id="@+id/chkFinanceiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Financeiro"
+            android:textSize="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/chkPresenças" />
+
+    </RelativeLayout>
+</ScrollView>
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/cadastrar"
+        android:textColor="@color/colorWhite"
+        android:layout_alignParentBottom="true"
+
+        />
+
+</RelativeLayout>

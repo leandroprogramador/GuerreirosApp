@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GuerreirosApp</string>
+    <string name="iniciarsessao">Iniciar Sessão</string>
+    <string name="senha">Senha</string>
+    <string name="email">E-mail</string>
+    <string name="registre">Primeiro acesso?</string>
+    <string name="esqueci">Esqueceu sua senha?</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="user">Usuário</string>
+    <string name="conf_senha">Confirmar Senha</string>
+</resources>
