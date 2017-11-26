@@ -1,5 +1,7 @@
 package com.leandro.guerreirosapp.Model;
 
+import com.leandro.guerreirosapp.Helper.ValidationHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -7,17 +9,17 @@ import java.util.ArrayList;
  */
 
 public class Users {
-    private int idUser;
+    private String idUser;
     private String user;
     private String email;
     private String password;
     private ArrayList<String> permissions = new ArrayList<>();
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 
@@ -44,6 +46,8 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 
 
     public ArrayList<String> getPermissions() {

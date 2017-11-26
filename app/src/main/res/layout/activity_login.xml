@@ -89,7 +89,7 @@
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:text="@string/registre"

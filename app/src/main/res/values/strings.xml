@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GuerreirosApp</string>
+    <string name="app_name">Guerreiros de Cristo</string>
     <string name="iniciarsessao">Iniciar Sessão</string>
     <string name="senha">Senha</string>
     <string name="email">E-mail</string>
@@ -8,4 +8,12 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="user">Usuário</string>
     <string name="conf_senha">Confirmar Senha</string>
+    <string name="user_id">userID</string>
+    <string name="title_activity_guerreiros">GuerreirosActivity</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Configurações</string>
 </resources>

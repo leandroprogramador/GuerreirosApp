@@ -145,6 +145,15 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="8dp"
             android:layout_below="@id/chkPresenças" />
+        <CheckBox
+            android:id="@+id/chkUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuários"
+            android:textSize="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/chkFinanceiro" />
 
     </RelativeLayout>
 </ScrollView>

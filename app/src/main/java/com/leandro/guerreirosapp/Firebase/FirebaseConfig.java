@@ -10,19 +10,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseConfig {
 
-    private static DatabaseReference databaseReference;
     private static FirebaseAuth firebaseAuth;
+    private static FirebaseDatabase firebaseDatabase;
 
-    public static DatabaseReference getFirebase(){
-        if(databaseReference == null){
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    public static FirebaseDatabase getFirebase(){
+        if(firebaseDatabase == null){
+            firebaseDatabase = FirebaseDatabase.getInstance();
             firebaseDatabase.setPersistenceEnabled(true);
-            databaseReference =firebaseDatabase.getReference();
 
 
         }
-        return databaseReference;
+        return firebaseDatabase;
     }
+
 
     public static FirebaseAuth getFirebaseAuth(){
         if(firebaseAuth == null){

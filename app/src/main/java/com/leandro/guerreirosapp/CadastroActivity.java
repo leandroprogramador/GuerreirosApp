@@ -1,5 +1,6 @@
 package com.leandro.guerreirosapp;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
+import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
 import com.leandro.guerreirosapp.Helper.ValidationHelper;
 import com.leandro.guerreirosapp.Model.Users;
 
@@ -53,6 +59,35 @@ public class CadastroActivity extends AppCompatActivity {
             user.setUser(editUser.getText().toString());
             user.setEmail(editEmail.getText().toString());
             user.setPassword(ValidationHelper.toSha256(editSenha.getText().toString()));
+
+            firebaseSignUp(user);
         }
     }
+
+    private void firebaseSignUp(final Users user){
+        FirebaseConfig.getFirebaseAuth().createUserWithEmailAndPassword(user.getEmail(),user.getPassword()).addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    FirebaseUser userFirebase = task.getResult().getUser();
+                    user.setIdUser(userFirebase.getUid().toString());
+                    FirebaseConfig.getFirebase().getReference().child("users").child(userFirebase.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(CadastroActivity.this, "Criado com sucesso!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+                    });
+                }
+                else if(task.getException().getMessage().contains("The email address is already in use by another account.")){
+                    Toast.makeText(CadastroActivity.this, "E-mail já esta cadastrado!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(CadastroActivity.this, "Não foi possível criar o usuário!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        }
 }

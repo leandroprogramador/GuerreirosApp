@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_inicial"
+            android:icon="@drawable/ic_home_white_24dp"
+            android:title="Principal" />
+        <item
+            android:id="@+id/nav_alunos"
+            android:icon="@drawable/ic_face_white_24dp"
+            android:title="Alunos" />
+        <item
+            android:id="@+id/nav_professores"
+            android:icon="@drawable/ic_school_white_24dp"
+            android:title="Professores" />
+        <item
+            android:id="@+id/nav_lista"
+            android:icon="@drawable/ic_playlist_add_check_white_24dp"
+            android:title="Lista de Presença" />
+        <item
+            android:id="@+id/nav_financeiro"
+            android:icon="@drawable/ic_monetization_on_white_24dp"
+            android:title="Financeiro" />
+        <item
+            android:id="@+id/nav_usuarios"
+            android:icon="@drawable/ic_supervisor_account_white_24dp"
+            android:title="Usuários" />
+        <item
+            android:id="@+id/nav_config"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Configurações" />
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/ic_exit_to_app_white_24dp"
+            android:title="Sair" />
+    </group>
+
+
+
+</menu>
