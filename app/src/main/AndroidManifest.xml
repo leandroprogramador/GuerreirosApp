@@ -3,6 +3,7 @@
     package="com.leandro.guerreirosapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:theme="@style/LoginTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,12 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadastroActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activities.CadastroActivity" />
+        <activity android:name=".Activities.MainActivity" />
         <activity
-            android:name=".GuerreirosActivity"
+            android:name=".Activities.GuerreirosActivity"
             android:label="@string/title_activity_guerreiros"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.NovoAlunoDados"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Activities.NovoAlunoEndereco" />
+        <activity android:name=".Activities.NovoAlunoModalidade"></activity>
     </application>
 
 </manifest>

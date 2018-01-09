@@ -1,8 +1,10 @@
-package com.leandro.guerreirosapp;
+package com.leandro.guerreirosapp.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+
+import com.leandro.guerreirosapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

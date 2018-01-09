@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     app:theme="@style/LoginTheme"
-    tools:context="com.leandro.guerreirosapp.LoginActivity">
+    tools:context="com.leandro.guerreirosapp.Activities.LoginActivity">
 
 
     <ImageView

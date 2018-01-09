@@ -16,4 +16,19 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Configurações</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="continuar">Continuar</string>
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="rg">RG</string>
+    <string name="dd">dd/mm/yyyy</string>
+    <string name="data">Data de Nascimento</string>
+    <string name="cpf">CPF</string>
+    <string name="endereco">Endereco</string>
+    <string name="cep">CEP</string>
+    <string name="bairro">Bairro</string>
+    <string name="uf">UF</string>
+    <string name="cidade">Cidade</string>
 </resources>

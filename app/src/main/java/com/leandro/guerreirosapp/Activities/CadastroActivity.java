@@ -1,10 +1,9 @@
-package com.leandro.guerreirosapp;
+package com.leandro.guerreirosapp.Activities;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
 import com.leandro.guerreirosapp.Helper.ValidationHelper;
 import com.leandro.guerreirosapp.Model.Users;
+import com.leandro.guerreirosapp.R;
 
 public class CadastroActivity extends AppCompatActivity {
 
