@@ -60,6 +60,7 @@ public class NovoAlunoDados extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         dataNascEdit.setText(String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year));
+                        calendar.set(year,month,dayOfMonth);
                     }
                 },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
@@ -106,7 +107,7 @@ public class NovoAlunoDados extends AppCompatActivity {
             aluno.setTelefone(MaskUtil.unmask(telefone));
             aluno.setRg(MaskUtil.unmask(rg));
             aluno.setCpf(MaskUtil.unmask(cpf));
-            aluno.setNasc(dataNasc);
+            aluno.setNasc(calendar.getTimeInMillis());
             if(radioBtF.isChecked()){
                 aluno.setSexo("F");
             }

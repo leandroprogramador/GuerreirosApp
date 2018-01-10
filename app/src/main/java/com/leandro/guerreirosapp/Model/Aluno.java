@@ -7,6 +7,21 @@ package com.leandro.guerreirosapp.Model;
 public class Aluno extends Entidade {
     private String cadastradoPor;
     private long cadastradoEm;
+    private boolean jiujitsu;
+    private boolean funcional;
+    private long ultimaAlteracao;
+    private String modalidade;
+    private boolean isencao;
+
+    public Aluno() {
+    }
+
+    public Aluno(String nome, String telefone, String email, String modalidade) {
+        super(nome, telefone, email);
+        this.modalidade = modalidade;
+    }
+
+
 
     public long getUltimaAlteracao() {
         return ultimaAlteracao;
@@ -14,21 +29,6 @@ public class Aluno extends Entidade {
 
     public void setUltimaAlteracao(long ultimaAlteracao) {
         this.ultimaAlteracao = ultimaAlteracao;
-    }
-
-    public boolean isencao() {
-        return isencao;
-    }
-
-    private long ultimaAlteracao;
-    private String modalidade;
-    private boolean isencao;
-
-    public Aluno(){}
-
-    public Aluno(String nome, String telefone, String email, String modalidade){
-        super(nome,telefone,email);
-        this.modalidade = modalidade;
     }
 
     public String getCadastradoPor() {
@@ -47,7 +47,7 @@ public class Aluno extends Entidade {
         this.cadastradoEm = cadastradoEm;
     }
 
-    public boolean getIsencao() {
+    public boolean isIsencao() {
         return isencao;
     }
 
@@ -62,4 +62,22 @@ public class Aluno extends Entidade {
     public void setModalidade(String modalidade) {
         this.modalidade = modalidade;
     }
+
+    public boolean isJiujitsu() {
+        return jiujitsu;
+    }
+
+    public void setJiujitsu(boolean jiujitsu) {
+        this.jiujitsu = jiujitsu;
+    }
+
+    public boolean isFuncional() {
+        return funcional;
+    }
+
+    public void setFuncional(boolean funcional) {
+        this.funcional = funcional;
+    }
+
+
 }

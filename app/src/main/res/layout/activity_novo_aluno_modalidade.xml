@@ -1,9 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.leandro.guerreirosapp.Activities.NovoAlunoModalidade">
+    android:background="@color/colorWhite"
+    app:theme="@style/LoginTheme"
+    tools:context="com.leandro.guerreirosapp.Activities.LoginActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/my_toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+
+            <TextView
+                android:id="@+id/selecione_modalidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_edit_cidade"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Modalidade"
+                android:textSize="18dp"
+
+                />
+
+            <CheckBox
+                android:id="@+id/checkbox_jiu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selecione_modalidade"
+                android:text="@string/jiujtsu"
+                android:textSize="16dp" />
+
+            <CheckBox
+                android:id="@+id/checkbox_funcional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selecione_modalidade"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/checkbox_jiu"
+                android:text="@string/funcional"
+                android:textSize="16dp" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_edit_peso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkbox_jiu"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/edit_peso"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/peso"
+                    android:inputType="numberDecimal" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_edit_inicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_edit_peso">
+
+                <EditText
+                    android:id="@+id/edit_inicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/inicio"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_edit_registro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_edit_inicio">
+
+                <EditText
+                    android:id="@+id/edit_registro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/registro"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/financeiro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_edit_registro"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Financeiro"
+                android:textSize="18dp"
+
+                />
+
+            <CheckBox
+                android:id="@+id/checkbox_isento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/financeiro"
+                android:layout_marginLeft="10dp"
+                android:text="@string/isento"
+                android:textSize="16dp" />
+
+
+            <TextView
+                android:id="@+id/faixas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_isento"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Faixas"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:id="@+id/add_faixa"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_add_white_24dp"
+                android:layout_below="@id/checkbox_isento"
+                android:tint="@color/colorPrimary"
+                android:onClick="addFaixa"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                tools:ignore="OnClick" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_faixas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/faixas"
+                tools:listitem="@layout/row_graducaoes" />
+
+
+            <Button
+                android:id="@+id/btnRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/recycler_faixas"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:onClick="cadastrar"
+                android:text="@string/continuar"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/colorWhite" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>

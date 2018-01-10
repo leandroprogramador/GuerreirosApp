@@ -19,7 +19,7 @@ public class Entidade {
     private String email;
     private String rg;
     private String cpf;
-    private String nasc;
+    private long nasc;
     private String sexo;
     private Double peso;
     private Endereco endereco;
@@ -43,7 +43,7 @@ public class Entidade {
     public Entidade() {
     }
 
-    public Entidade(String nome, String telefone, String email, String rg, String cpf, String nasc, String sexo, Double peso, Endereco endereco, String foto) {
+    public Entidade(String nome, String telefone, String email, String rg, String cpf, long nasc, String sexo, Double peso, Endereco endereco, String foto) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
@@ -96,11 +96,11 @@ public class Entidade {
         this.cpf = cpf;
     }
 
-    public String getNasc() {
+    public long getNasc() {
         return nasc;
     }
 
-    public void setNasc(String nasc) {
+    public void setNasc(long nasc) {
         this.nasc = nasc;
     }
 

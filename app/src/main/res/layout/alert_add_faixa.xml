@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/layout_add_faixa"
+    android:layout_below="@id/faixas"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="visible"
+    android:layout_margin="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/close_dialog"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_close_white_24dp"
+        android:tint="@color/colorGrey"
+        />
+
+    <TextView
+        android:id="@+id/selecione_faixa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_edit_cidade"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:text="Selecione a Faixa"
+
+        />
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:id="@+id/faixas_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/selecione_faixa"
+        app:ms_dropdown_max_height="250dp"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_edit_data_grad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/faixas_spinner">
+
+        <EditText
+            android:id="@+id/edit_data_graduacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/datagraduacao"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/btnAddFaixa"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/layout_edit_data_grad"
+        android:background="@color/colorPrimary"
+        android:onClick="addFaixa"
+        android:text="@string/Adicionar"
+        android:textColor="@color/colorWhite" />
+</RelativeLayout>
