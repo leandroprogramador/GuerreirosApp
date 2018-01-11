@@ -80,7 +80,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
 
                         adapter.removeAll();
                         for (DataSnapshot gSnapshots : dataSnapshot.getChildren()){
-                            Aluno aluno = gSnapshots.getValue(Aluno.class);
+                             Aluno aluno = gSnapshots.getValue(Aluno.class);
                             adapter.addItem(aluno);
                         }
                     }

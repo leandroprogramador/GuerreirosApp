@@ -90,6 +90,7 @@ public class NovoAlunoDados extends AppCompatActivity {
 
         if(nome.equals("")){
             Toast.makeText(this, "O campo nome é obrigatório!", Toast.LENGTH_SHORT).show();
+
             progress.setVisibility(View.INVISIBLE);
         }
         else if (!email.equals("") && !ValidationHelper.validarEmail(email)){

@@ -3,8 +3,10 @@ package com.leandro.guerreirosapp.Activities;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,7 +37,7 @@ import java.util.List;
 public class NovoAlunoModalidade extends AppCompatActivity {
 
     Toolbar toolbar;
-    Calendar calendar, calendarGraduacao = Calendar.getInstance();
+    Calendar calendar, calendarGraduacao ;
     EditText editPeso, editInicio, editRegistro;
     CheckBox chkJiu, chkFunc;
     RecyclerView recyclerView;
@@ -67,6 +69,7 @@ public class NovoAlunoModalidade extends AppCompatActivity {
         getSupportActionBar().setTitle("Dados Esportivos");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        calendar = Calendar.getInstance();
 
         editInicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +78,6 @@ public class NovoAlunoModalidade extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         editInicio.setText(String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year));
-
                         calendar.set(year,month,dayOfMonth);
                     }
                 },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
@@ -94,27 +96,18 @@ public class NovoAlunoModalidade extends AppCompatActivity {
 
 
     public void addFaixa(View view){
-        View viewAlert = LayoutInflater.from(this).inflate(R.layout.alert_add_faixa, null);
-        ImageView imgClose = viewAlert.findViewById(R.id.close_dialog);
-        MaterialSpinner faixasSpinner = viewAlert.findViewById(R.id.faixas_spinner);
-        EditText graduacaoData = viewAlert.findViewById(R.id.edit_data_graduacao);
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setView(viewAlert);
-        final AlertDialog alert = alertBuilder.create();
 
-        imgClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alert.dismiss();
-            }
-        });
-
-        alert.show();
+        startActivityForResult(new Intent(this, NovaFaixaActivity.class), 1);
 
     }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

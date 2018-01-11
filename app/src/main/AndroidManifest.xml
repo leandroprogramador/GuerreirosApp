@@ -7,11 +7,11 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.LoginActivity"
@@ -32,7 +32,10 @@
             android:name=".Activities.NovoAlunoDados"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Activities.NovoAlunoEndereco" />
-        <activity android:name=".Activities.NovoAlunoModalidade"></activity>
+        <activity android:name=".Activities.NovoAlunoModalidade" />
+        <activity android:name=".Activities.NovaFaixaActivity"
+            android:excludeFromRecents="true"
+            ></activity>
     </application>
 
 </manifest>

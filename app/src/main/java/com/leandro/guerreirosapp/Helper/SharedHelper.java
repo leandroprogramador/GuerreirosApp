@@ -25,6 +25,7 @@ public class SharedHelper {
 
     public static void deleteData(Activity activity, String key){
         SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit().remove(key);
+        SharedPreferences.Editor editor = sharedPref.edit().clear();
+        editor.commit();
     }
 }
