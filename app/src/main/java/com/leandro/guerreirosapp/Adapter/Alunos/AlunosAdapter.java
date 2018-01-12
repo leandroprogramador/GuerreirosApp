@@ -39,7 +39,13 @@ public class AlunosAdapter extends RecyclerView.Adapter<AlunosAdapter.AlunosView
     @Override
     public void onBindViewHolder(AlunosViewHolder holder, int position) {
         holder.txtNome.setText(mDataset.get(position).getNome());
-        holder.txtModalidade.setText(mDataset.get(position).getModalidade());
+        if(mDataset.get(position).isFuncional() && mDataset.get(position).isJiujitsu() ){
+          holder.txtModalidade.setText("JiuJitsu/Funcional");
+        } else if(mDataset.get(position).isFuncional() && !mDataset.get(position).isJiujitsu()){
+            holder.txtModalidade.setText("Funcional");
+        } else{
+            holder.txtModalidade.setText("Jiu Jitsu");
+        }
     }
 
     public void addItem(Aluno aluno){

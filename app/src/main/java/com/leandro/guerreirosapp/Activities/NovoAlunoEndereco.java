@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
+import com.leandro.guerreirosapp.Helper.ConnectionHelper;
+import com.leandro.guerreirosapp.Helper.CookieHelper;
 import com.leandro.guerreirosapp.Helper.MaskType;
 import com.leandro.guerreirosapp.Helper.MaskUtil;
 import com.leandro.guerreirosapp.Model.Aluno;
@@ -115,7 +117,7 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        if(editCep.getText().length()>=7){
+        if(editCep.getText().length()>=7 && ConnectionHelper.checkConnection(this)){
             progress.setVisibility(View.VISIBLE);
            new Thread(new Runnable() {
                @Override
@@ -155,6 +157,8 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
                                public void run() {
                                    progress.setVisibility(View.INVISIBLE);
                                    Toast.makeText(NovoAlunoEndereco.this, "Cep inválido, não foi possível encontrar endereço correspondente.", Toast.LENGTH_SHORT).show();
+                                   CookieHelper.createCookieToast(NovoAlunoEndereco.this, "Erro", "Cep inválido, não foi possível encontrar endereço correspondente.", "Entendi", R.drawable.ic_signal_cellular_connected_no_internet_4_bar_white_24dp, R.color.colorPrimaryDark);
+
                                }
                            });
                        }

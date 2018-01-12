@@ -25,6 +25,7 @@ import com.leandro.guerreirosapp.Activities.NovoAlunoDados;
 import com.leandro.guerreirosapp.Adapter.Alunos.AlunosAdapter;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
 import com.leandro.guerreirosapp.Activities.GuerreirosActivity;
+import com.leandro.guerreirosapp.Helper.SharedHelper;
 import com.leandro.guerreirosapp.Model.Aluno;
 import com.leandro.guerreirosapp.R;
 
@@ -43,13 +44,14 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
     ProgressBar progress;
     String userID;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions((GuerreirosActivity)getContext(), new String[]{Manifest.permission.CALL_PHONE}, CALL_PHONE_PERMISSION);
         }
-        userID = getArguments().get("userID").toString();
+        userID = SharedHelper.getData(getActivity(), getString(R.string.user_id));
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_alunos_list, container, false);
        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -74,7 +76,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
         new Thread(new Runnable() {
             @Override
             public void run() {
-                databaseReference.child("alunos").addValueEventListener(new ValueEventListener() {
+                databaseReference.child("alunos").orderByKey().addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 

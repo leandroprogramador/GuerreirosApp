@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
+import com.leandro.guerreirosapp.Helper.CookieHelper;
 import com.leandro.guerreirosapp.Helper.MaskType;
 import com.leandro.guerreirosapp.Helper.MaskUtil;
 import com.leandro.guerreirosapp.Helper.ValidationHelper;
@@ -89,17 +90,19 @@ public class NovoAlunoDados extends AppCompatActivity {
         String dataNasc = dataNascEdit.getText().toString();
 
         if(nome.equals("")){
-            Toast.makeText(this, "O campo nome é obrigatório!", Toast.LENGTH_SHORT).show();
+
+            CookieHelper.createCookieToast(NovoAlunoDados.this, "Erro", "O campo nome é obrigatório!", "Entendi", R.drawable.ic_error_white_24dp, R.color.colorPrimaryDark);
 
             progress.setVisibility(View.INVISIBLE);
         }
         else if (!email.equals("") && !ValidationHelper.validarEmail(email)){
-            Toast.makeText(this, "O e-mail digitado é inválido!", Toast.LENGTH_SHORT).show();
+            CookieHelper.createCookieToast(NovoAlunoDados.this, "Erro", "O e-mail digitado é inválido!", "Entendi", R.drawable.ic_signal_cellular_connected_no_internet_4_bar_white_24dp, R.color.colorPrimaryDark);
+
             progress.setVisibility(View.INVISIBLE);
         }
         else{
             aluno = new Aluno();
-            final String id = ValidationHelper.toSha256(nome + calendar.getTimeInMillis());
+            final String id = nome.toLowerCase().trim().replace(" ", "_") + ValidationHelper.toSha256(nome + calendar.getTimeInMillis());
             aluno.setEntityID(id);
             aluno.setCadastradoPor(getIntent().getStringExtra("userID"));
             aluno.setCadastradoEm(calendar.getTimeInMillis());

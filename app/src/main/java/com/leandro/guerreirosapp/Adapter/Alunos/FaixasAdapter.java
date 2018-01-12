@@ -1,5 +1,8 @@
 package com.leandro.guerreirosapp.Adapter.Alunos;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
@@ -24,10 +27,18 @@ import java.util.List;
 
 public class FaixasAdapter extends RecyclerView.Adapter<FaixasAdapter.FaixasViewHolder> implements ItemTouchHelperAdapter {
 
-    List<Graduacao> mDataSet;
 
-    public FaixasAdapter(List<Graduacao> mDataSet) {
+
+    List<Graduacao> mDataSet;
+    Context context;
+
+    public FaixasAdapter(List<Graduacao> mDataSet, Context context) {
         this.mDataSet = mDataSet;
+        this.context = context;
+    }
+
+    public List<Graduacao> getmDataSet() {
+        return mDataSet;
     }
 
     @Override
@@ -40,7 +51,8 @@ public class FaixasAdapter extends RecyclerView.Adapter<FaixasAdapter.FaixasView
     public void onBindViewHolder(FaixasViewHolder holder, int position) {
         holder.txtFaixa.setText(mDataSet.get(position).getFaixa().getFaixa());
         holder.txtData.setText(DateHelper.timeStampToBr(mDataSet.get(position).getDataGraduacao()));
-        holder.imageFaixa.setImageResource(R.drawable.amarelo);
+        Resources resources = context.getResources();
+        holder.imageFaixa.setImageResource( resources.getIdentifier(mDataSet.get(position).getFaixa().getCor(), "drawable", context.getPackageName()));
     }
 
     @Override

@@ -1,33 +1,30 @@
 package com.leandro.guerreirosapp.Activities;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.google.gson.Gson;
 import com.leandro.guerreirosapp.Adapter.Alunos.FaixasAdapter;
 import com.leandro.guerreirosapp.Adapter.Alunos.SimpleItemTouchHelperCallback;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
-import com.leandro.guerreirosapp.Helper.ValidationHelper;
-import com.leandro.guerreirosapp.Model.Faixa;
+import com.leandro.guerreirosapp.Helper.CookieHelper;
+import com.leandro.guerreirosapp.Model.Aluno;
 import com.leandro.guerreirosapp.Model.Graduacao;
 import com.leandro.guerreirosapp.R;
 
@@ -37,12 +34,14 @@ import java.util.List;
 public class NovoAlunoModalidade extends AppCompatActivity {
 
     Toolbar toolbar;
-    Calendar calendar, calendarGraduacao ;
+    Calendar calendar;
     EditText editPeso, editInicio, editRegistro;
-    CheckBox chkJiu, chkFunc;
+    CheckBox chkJiu, chkFunc, chkIsento;
     RecyclerView recyclerView;
     FaixasAdapter adapter;
+    Gson gson = new Gson();
     List<Graduacao> mDataset = new ArrayList<>();
+    Aluno aluno;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,22 +54,20 @@ public class NovoAlunoModalidade extends AppCompatActivity {
         editRegistro = findViewById(R.id.edit_registro);
         chkJiu = findViewById(R.id.checkbox_jiu);
         chkFunc = findViewById(R.id.checkbox_funcional);
+        chkIsento = findViewById(R.id.checkbox_isento);
         recyclerView = findViewById(R.id.recycler_faixas);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mDataset.add(new Graduacao(new Faixa("Branca"), Calendar.getInstance().getTimeInMillis()));
-        mDataset.add(new Graduacao(new Faixa("Amarela/Branca"), Calendar.getInstance().getTimeInMillis()));
-        mDataset.add(new Graduacao(new Faixa("Amarela"), Calendar.getInstance().getTimeInMillis()));
-        mDataset.add(new Graduacao(new Faixa("Amarela/Preta"), Calendar.getInstance().getTimeInMillis()));
 
-        adapter = new FaixasAdapter(mDataset);
+        adapter = new FaixasAdapter(mDataset, this);
         recyclerView.setAdapter(adapter);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Dados Esportivos");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        calendar = Calendar.getInstance();
+        aluno = gson.fromJson(getIntent().getStringExtra("aluno"), Aluno.class);
 
+        calendar = Calendar.getInstance();
         editInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,15 +87,55 @@ public class NovoAlunoModalidade extends AppCompatActivity {
                 new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recyclerView);
-
-
     }
-
 
     public void addFaixa(View view){
 
-        startActivityForResult(new Intent(this, NovaFaixaActivity.class), 1);
+        startActivityForResult(new Intent(this, NovaFaixaActivity.class), 100);
 
+    }
+
+    public void cadastrar(View view){
+        if(!chkFunc.isChecked() && !chkJiu.isChecked()) {
+            CookieHelper.createCookieToast(this,"Erro!", "Selecione pelo menos uma modalidade!", "Entendi", R.drawable.ic_error_white_24dp, R.color.colorPrimaryDark);
+        }
+        else {
+            Double peso = 0d;
+            if(!editPeso.getText().toString().equals("")) {
+                peso = Double.valueOf(editPeso.getText().toString());
+            }
+            long dataInicio = calendar.getTimeInMillis();
+            String registro = editRegistro.getText().toString();
+            if (chkJiu.isChecked()) {
+                aluno.setJiujitsu(true);
+            }
+            if (chkFunc.isChecked()) {
+                aluno.setFuncional(true);
+            }
+
+            if (chkIsento.isChecked()) {
+                aluno.setIsencao(true);
+            }
+            
+            aluno.setPeso(peso);
+            aluno.setInicio(dataInicio);
+            aluno.setRegistro(registro);
+            aluno.setGraduacao(adapter.getmDataSet());
+
+            FirebaseConfig.getFirebase().getReference("alunos").child(aluno.getEntityID()).setValue(aluno).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        CookieHelper.createCookieToast(NovoAlunoModalidade.this, "Sucesso!", "Aluno cadastrado com sucesso!","OK", R.drawable.ic_done_all_white_24dp, R.color.colorSuccess);
+                        startActivity(new Intent(NovoAlunoModalidade.this, GuerreirosActivity.class).putExtra("fragment", "alunos").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    }
+                }
+            });
+
+
+
+
+        }
     }
     @Override
     public boolean onSupportNavigateUp() {
@@ -108,6 +145,17 @@ public class NovoAlunoModalidade extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode){
+            case 100:
+                if(resultCode == RESULT_OK){
+                    Bundle res = data.getExtras();
+                    String result = res.getString("data");
+
+                    Graduacao graduacao = gson.fromJson(result, Graduacao.class);
+                    adapter.add(graduacao);
+
+                }
+                break;
+        }
     }
 }

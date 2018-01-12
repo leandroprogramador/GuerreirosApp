@@ -13,6 +13,9 @@ public class Graduacao {
         this.dataGraduacao = dataGraduacao;
     }
 
+    public Graduacao() {
+    }
+
     public Faixa getFaixa() {
         return faixa;
     }

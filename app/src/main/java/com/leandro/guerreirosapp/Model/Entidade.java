@@ -23,6 +23,9 @@ public class Entidade {
     private String sexo;
     private Double peso;
     private Endereco endereco;
+    private long ultimaAlteracao;
+    private String cadastradoPor;
+    private long cadastradoEm;
 
     public Entidade(String nome, String telefone, String email) {
         this.nome = nome;
@@ -126,5 +129,29 @@ public class Entidade {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public long getUltimaAlteracao() {
+        return ultimaAlteracao;
+    }
+
+    public void setUltimaAlteracao(long ultimaAlteracao) {
+        this.ultimaAlteracao = ultimaAlteracao;
+    }
+
+    public String getCadastradoPor() {
+        return cadastradoPor;
+    }
+
+    public void setCadastradoPor(String cadastradoPor) {
+        this.cadastradoPor = cadastradoPor;
+    }
+
+    public long getCadastradoEm() {
+        return cadastradoEm;
+    }
+
+    public void setCadastradoEm(long cadastradoEm) {
+        this.cadastradoEm = cadastradoEm;
     }
 }
