@@ -49,7 +49,7 @@ public class FaixasAdapter extends RecyclerView.Adapter<FaixasAdapter.FaixasView
 
     @Override
     public void onBindViewHolder(FaixasViewHolder holder, int position) {
-        holder.txtFaixa.setText(mDataSet.get(position).getFaixa().getFaixa());
+        holder.txtFaixa.setText(mDataSet.get(position).getFaixa().getFaixa() + " (" + mDataSet.get(position).getGrau() + "º grau)");
         holder.txtData.setText(DateHelper.timeStampToBr(mDataSet.get(position).getDataGraduacao()));
         Resources resources = context.getResources();
         holder.imageFaixa.setImageResource( resources.getIdentifier(mDataSet.get(position).getFaixa().getCor(), "drawable", context.getPackageName()));

@@ -21,6 +21,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.leandro.guerreirosapp.Activities.AlunoActivity;
 import com.leandro.guerreirosapp.Activities.NovoAlunoDados;
 import com.leandro.guerreirosapp.Adapter.Alunos.AlunosAdapter;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
@@ -106,6 +108,14 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
         });
 
        return view;
+    }
+
+    @Override
+    public void onItemClick(Object object) {
+        Aluno aluno = (Aluno) object;
+        Gson gson = new Gson();
+        String json = gson.toJson(aluno);
+        startActivity(new Intent(getActivity(), AlunoActivity.class));
     }
 
     @Override

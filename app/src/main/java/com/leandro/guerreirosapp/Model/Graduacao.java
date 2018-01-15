@@ -7,10 +7,12 @@ package com.leandro.guerreirosapp.Model;
 public class Graduacao {
     Faixa faixa;
     long dataGraduacao;
+    String grau;
 
-    public Graduacao(Faixa faixa, long dataGraduacao) {
+    public Graduacao(Faixa faixa, long dataGraduacao, String grau) {
         this.faixa = faixa;
         this.dataGraduacao = dataGraduacao;
+        this.grau = grau;
     }
 
     public Graduacao() {
@@ -30,5 +32,13 @@ public class Graduacao {
 
     public void setDataGraduacao(long dataGraduacao) {
         this.dataGraduacao = dataGraduacao;
+    }
+
+    public String getGrau() {
+        return grau;
+    }
+
+    public void setGrau(String grau) {
+        this.grau = grau;
     }
 }

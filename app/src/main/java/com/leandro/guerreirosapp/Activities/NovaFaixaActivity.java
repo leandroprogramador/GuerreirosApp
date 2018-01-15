@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -35,7 +36,7 @@ public class NovaFaixaActivity extends AppCompatActivity {
     Toolbar toolbar;
     Calendar calendar;
     EditText editGraduacao;
-    Spinner faixasSpinner;
+    Spinner faixasSpinner, grauSpinner;
     FaixasSpinnerAdapter faixasSpinnerAdapter;
     List<Faixa> faixas = new ArrayList<>();
     @Override
@@ -45,6 +46,7 @@ public class NovaFaixaActivity extends AppCompatActivity {
         toolbar =  findViewById(R.id.my_toolbar);
         editGraduacao = findViewById(R.id.edit_data_graduacao);
         faixasSpinner = findViewById(R.id.faixas_spinner);
+        grauSpinner = findViewById(R.id.grau_spinner);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Nova Faixa");
@@ -69,6 +71,12 @@ public class NovaFaixaActivity extends AppCompatActivity {
         });
         faixasSpinnerAdapter =  new FaixasSpinnerAdapter(NovaFaixaActivity.this, R.layout.row_spinner_faixas,faixas);
         faixasSpinner.setAdapter(faixasSpinnerAdapter);
+
+        ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_dropdown_item,
+                getResources().getStringArray(R.array.graus));
+        grauSpinner.setAdapter(spinnerArrayAdapter);
+
 
         new Thread(new Runnable() {
             @Override
@@ -115,11 +123,12 @@ public class NovaFaixaActivity extends AppCompatActivity {
     }
 
     public void addFaixa(View view){
-        if(!editGraduacao.getText().toString().equals("")) {
+        if(grauSpinner.getSelectedItemId() != 0) {
             long data = calendar.getTimeInMillis();
             Faixa faixa = (Faixa) faixasSpinner.getSelectedItem();
+            String grau = grauSpinner.getSelectedItem().toString();
 
-            Graduacao graduacao = new Graduacao(faixa, data);
+            Graduacao graduacao = new Graduacao(faixa, data, grau);
             Gson gson = new Gson();
             String json = gson.toJson(graduacao);
             Intent returnIntent = new Intent();
@@ -128,7 +137,7 @@ public class NovaFaixaActivity extends AppCompatActivity {
             finish();
         }
         else{
-            CookieHelper.createCookieToast(this,"Erro", "É necessário selecionar a data de troca da faixa", "Entendi",R.drawable.ic_error_white_24dp, R.color.colorPrimaryDark);
+            CookieHelper.createCookieToast(this,"Erro", "É necessário selecionar o grau da faixa", "Entendi",R.drawable.ic_error_white_24dp, R.color.colorPrimaryDark);
         }
 
 

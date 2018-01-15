@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.leandro.guerreirosapp.Adapter.Alunos.FaixasAdapter;
 import com.leandro.guerreirosapp.Adapter.Alunos.SimpleItemTouchHelperCallback;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
+import com.leandro.guerreirosapp.Helper.ConnectionHelper;
 import com.leandro.guerreirosapp.Helper.CookieHelper;
 import com.leandro.guerreirosapp.Model.Aluno;
 import com.leandro.guerreirosapp.Model.Graduacao;
@@ -36,7 +37,7 @@ public class NovoAlunoModalidade extends AppCompatActivity {
     Toolbar toolbar;
     Calendar calendar;
     EditText editPeso, editInicio, editRegistro;
-    CheckBox chkJiu, chkFunc, chkIsento;
+    CheckBox chkJiu, chkFunc, chkIsento, chkProfessor;
     RecyclerView recyclerView;
     FaixasAdapter adapter;
     Gson gson = new Gson();
@@ -55,6 +56,7 @@ public class NovoAlunoModalidade extends AppCompatActivity {
         chkJiu = findViewById(R.id.checkbox_jiu);
         chkFunc = findViewById(R.id.checkbox_funcional);
         chkIsento = findViewById(R.id.checkbox_isento);
+        chkProfessor = findViewById(R.id.checkbox_prof);
         recyclerView = findViewById(R.id.recycler_faixas);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -116,25 +118,38 @@ public class NovoAlunoModalidade extends AppCompatActivity {
             if (chkIsento.isChecked()) {
                 aluno.setIsencao(true);
             }
-            
+
             aluno.setPeso(peso);
             aluno.setInicio(dataInicio);
             aluno.setRegistro(registro);
             aluno.setGraduacao(adapter.getmDataSet());
 
+            if(chkProfessor.isChecked()){
+
+                aluno.setProfessor(true);
+                FirebaseConfig.getFirebase().getReference("professor").child(aluno.getEntityID()).setValue(aluno).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                        }
+                    }
+                });
+            }
+
             FirebaseConfig.getFirebase().getReference("alunos").child(aluno.getEntityID()).setValue(aluno).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
+                    if(task.isComplete()){
                         CookieHelper.createCookieToast(NovoAlunoModalidade.this, "Sucesso!", "Aluno cadastrado com sucesso!","OK", R.drawable.ic_done_all_white_24dp, R.color.colorSuccess);
                         startActivity(new Intent(NovoAlunoModalidade.this, GuerreirosActivity.class).putExtra("fragment", "alunos").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     }
                 }
             });
 
-
-
-
+            if(!ConnectionHelper.checkConnection(this)){
+                CookieHelper.createCookieToast(NovoAlunoModalidade.this, "Sucesso!", "Aluno cadastrado com sucesso!","OK", R.drawable.ic_done_all_white_24dp, R.color.colorSuccess);
+                startActivity(new Intent(NovoAlunoModalidade.this, GuerreirosActivity.class).putExtra("fragment", "alunos").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
         }
     }
     @Override
@@ -153,7 +168,6 @@ public class NovoAlunoModalidade extends AppCompatActivity {
 
                     Graduacao graduacao = gson.fromJson(result, Graduacao.class);
                     adapter.add(graduacao);
-
                 }
                 break;
         }

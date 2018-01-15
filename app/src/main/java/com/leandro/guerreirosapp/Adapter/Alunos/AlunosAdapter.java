@@ -75,7 +75,12 @@ public class AlunosAdapter extends RecyclerView.Adapter<AlunosAdapter.AlunosView
             imgMail = (ImageView) itemView.findViewById(R.id.img_mail);
             imgProfile = (CircleImageView) itemView.findViewById(R.id.aluno_img);
 
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iAlunoClick.onItemClick(mDataset.get(getLayoutPosition()));
+                }
+            });
 
             imgPhone.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,6 +99,7 @@ public class AlunosAdapter extends RecyclerView.Adapter<AlunosAdapter.AlunosView
     }
 
     public interface IAlunoClick{
+        void onItemClick(Object object);
         void onPhoneClick(Object object, int position);
         void onMailClick(Object object, int position);
     }

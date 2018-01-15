@@ -1,32 +1,23 @@
 package com.leandro.guerreirosapp.Model;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 /**
- * Created by leani on 26/11/2017.
+ * Created by leandro.araujo on 15/01/2018.
  */
 
-public class Aluno extends Entidade {
+public class Professor extends Entidade {
 
     private boolean jiujitsu = false;
     private boolean funcional = false;
     private boolean isencao = false;
-    private boolean professor = false;
     private long inicio;
     private List<Graduacao> graduacao;
     private String registro;
 
-
-    public Aluno() {
-    }
-
-    public boolean isIsencao() {
-        return isencao;
-    }
-
-    public void setIsencao(boolean isencao) {
-        this.isencao = isencao;
-    }
+    public Professor(){}
 
 
     public boolean isJiujitsu() {
@@ -45,12 +36,12 @@ public class Aluno extends Entidade {
         this.funcional = funcional;
     }
 
-    public List<Graduacao> getGraduacao() {
-        return graduacao;
+    public boolean isIsencao() {
+        return isencao;
     }
 
-    public void setGraduacao(List<Graduacao> graduacao) {
-        this.graduacao = graduacao;
+    public void setIsencao(boolean isencao) {
+        this.isencao = isencao;
     }
 
     public long getInicio() {
@@ -61,6 +52,14 @@ public class Aluno extends Entidade {
         this.inicio = inicio;
     }
 
+    public List<Graduacao> getGraduacao() {
+        return graduacao;
+    }
+
+    public void setGraduacao(List<Graduacao> graduacao) {
+        this.graduacao = graduacao;
+    }
+
     public String getRegistro() {
         return registro;
     }
@@ -69,13 +68,8 @@ public class Aluno extends Entidade {
         this.registro = registro;
     }
 
-    public boolean isProfessor() {
-        return professor;
-    }
 
-    public void setProfessor(boolean professor) {
-        this.professor = professor;
-    }
+
 
 
 }

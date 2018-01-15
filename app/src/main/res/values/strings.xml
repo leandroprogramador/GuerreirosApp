@@ -42,6 +42,7 @@
     <string name="datagraduacao">Data Graduação</string>
     <string name="Adicionar">Adicionar</string>
     <string name="action_close">Fechar</string>
+    <string name="professor">Professor</string>
 
     <string-array name="ufs">
         <item>Selecione UF</item>
@@ -72,5 +73,13 @@
         <item>SE</item>
         <item>SP</item>
         <item>TO</item>
+    </string-array>
+
+    <string-array name="graus">
+        <item>Selecione</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
 </resources>
