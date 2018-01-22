@@ -71,12 +71,11 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/account_outline"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                     />
+                    android:src="@drawable/account_outline" />
 
                 <TextView
-                    android:id="@+id/tvNumber1"
+                    android:id="@+id/tvNome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -88,9 +87,10 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/txtSexo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvNumber1"
+                    android:layout_below="@id/tvNome"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="8dp"
@@ -99,7 +99,6 @@
                     android:text="Masculino"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="#727272" />
-
 
 
             </RelativeLayout>
@@ -116,13 +115,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/baby"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
+                    android:src="@drawable/baby" />
 
                 <TextView
-                    android:id="@+id/tvNumber2"
+                    android:id="@+id/tvDataNasc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -136,7 +134,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvNumber2"
+                    android:layout_below="@id/tvDataNasc"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="8dp"
@@ -147,8 +145,8 @@
                     android:textColor="#727272" />
 
 
-
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -228,10 +226,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/account_card_details"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
+                    android:src="@drawable/account_card_details" />
 
                 <TextView
                     android:id="@+id/tvNumber7"
@@ -277,8 +274,6 @@
             </RelativeLayout>
 
 
-
-
             <View xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -298,10 +293,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/home_map_marker"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                 />
+                    android:src="@drawable/home_map_marker" />
 
                 <TextView
                     android:id="@+id/tvNumber3"
@@ -334,7 +328,6 @@
             </RelativeLayout>
 
 
-
             <View xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -354,10 +347,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/karate"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
+                    android:src="@drawable/karate" />
 
                 <TextView
                     android:id="@+id/tvNumber9"
@@ -401,10 +393,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/school"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
+                    android:src="@drawable/school" />
 
                 <TextView
                     android:id="@+id/tvNumber10"
@@ -448,11 +439,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/calendar"
-                    android:tint="@color/colorAccent"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
+                    android:src="@drawable/calendar"
+                    android:tint="@color/colorAccent" />
 
                 <TextView
                     android:id="@+id/tvNumber11"
@@ -496,11 +486,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/weight_kilogram"
-                    android:tint="@color/colorAccent"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
+                    android:src="@drawable/weight_kilogram"
+                    android:tint="@color/colorAccent" />
 
                 <TextView
                     android:id="@+id/tvNumber12"
@@ -544,10 +533,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/book_open"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
+                    android:src="@drawable/book_open" />
 
                 <TextView
                     android:id="@+id/tvNumber13"
@@ -578,6 +566,7 @@
 
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -590,10 +579,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/currency_usd_off"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    />
+                    android:src="@drawable/currency_usd_off" />
 
                 <TextView
                     android:id="@+id/tvNumber14"
@@ -631,8 +619,6 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:background="#B6B6B6" />
-
-           
 
 
         </LinearLayout>

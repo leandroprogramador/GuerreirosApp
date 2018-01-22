@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +30,7 @@ public class AlunoActivity extends AppCompatActivity {
     Gson gson = new Gson();
     ProgressBar progressBar;
     FloatingActionButton fabEdit;
+    TextView txtAluno, txtSexo;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,18 @@ public class AlunoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressBar = findViewById(R.id.progressBar);
         fabEdit = findViewById(R.id.fab);
+        txtAluno = findViewById(R.id.tvNumber1);
+        txtSexo = findViewById(R.id.txtSexo);
+
         aluno = gson.fromJson(getIntent().getStringExtra("aluno"), Aluno.class);
+
+        txtAluno.setText(aluno.getNome());
+        if(aluno.getSexo().equals("M")){
+            txtSexo.setText("Masculino");
+        } else{
+            txtSexo.setText("Feminino");
+        }
+
 
         fabEdit.setOnClickListener(new View.OnClickListener() {
             @Override
