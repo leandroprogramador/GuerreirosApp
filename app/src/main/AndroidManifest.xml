@@ -32,8 +32,8 @@
         <activity
             android:name=".Activities.NovoAlunoDados"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Activities.NovoAlunoEndereco" />
-        <activity android:name=".Activities.NovoAlunoModalidade" />
+        <activity android:name=".Activities.NovoAlunoEndereco"  android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Activities.NovoAlunoModalidade"  android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Activities.NovaFaixaActivity"
             android:excludeFromRecents="true" />

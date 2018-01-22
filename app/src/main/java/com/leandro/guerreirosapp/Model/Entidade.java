@@ -21,7 +21,7 @@ public class Entidade {
     private String cpf;
     private long nasc;
     private String sexo;
-    private Double peso;
+    private String peso;
     private Endereco endereco = new Endereco();
     private long ultimaAlteracao;
     private String cadastradoPor;
@@ -46,7 +46,7 @@ public class Entidade {
     public Entidade() {
     }
 
-    public Entidade(String nome, String telefone, String email, String rg, String cpf, long nasc, String sexo, Double peso, Endereco endereco, String foto) {
+    public Entidade(String nome, String telefone, String email, String rg, String cpf, long nasc, String sexo, String peso, Endereco endereco, String foto) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
@@ -115,11 +115,11 @@ public class Entidade {
         this.sexo = sexo;
     }
 
-    public Double getPeso() {
+    public String getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(String peso) {
         this.peso = peso;
     }
 
