@@ -60,7 +60,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
        fab.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               startActivity(new Intent(getActivity(), NovoAlunoDados.class).putExtra("userID",userID));
+               startActivity(new Intent(getActivity(), NovoAlunoDados.class).putExtra("userID",userID).putExtra("action", "new"));
 
            }
        });
@@ -75,9 +75,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
         progress.setVisibility(View.VISIBLE);
        databaseReference =  FirebaseConfig.getFirebase().getReference();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+
                 databaseReference.child("alunos").orderByKey().addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -87,6 +85,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
                              Aluno aluno = gSnapshots.getValue(Aluno.class);
                             adapter.addItem(aluno);
                         }
+                        progress.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -97,15 +96,9 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
 
                 });
 
-            }
-        }).start();
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progress.setVisibility(View.INVISIBLE);
-            }
-        });
+
+
 
        return view;
     }
@@ -115,7 +108,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
         Aluno aluno = (Aluno) object;
         Gson gson = new Gson();
         String json = gson.toJson(aluno);
-        startActivity(new Intent(getActivity(), AlunoActivity.class));
+        startActivity(new Intent(getActivity(), AlunoActivity.class).putExtra("aluno", json));
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Entidade {
     private long nasc;
     private String sexo;
     private Double peso;
-    private Endereco endereco;
+    private Endereco endereco = new Endereco();
     private long ultimaAlteracao;
     private String cadastradoPor;
     private long cadastradoEm;

@@ -294,4 +294,12 @@
         android:src="@drawable/ic_mode_edit_white_24dp"
         app:layout_anchorGravity="bottom|end" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </android.support.design.widget.CoordinatorLayout>

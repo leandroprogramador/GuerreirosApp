@@ -8,17 +8,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class Endereco {
     @SerializedName("logradouro")
-    private String endereco;
+    private String endereco = "";
     @SerializedName("cep")
-    private String cep;
+    private String cep= "";
     @SerializedName("uf")
-    private String uf;
+    private String uf= "";
     @SerializedName("localidade")
-    private String cidade;
+    private String cidade= "";
     @SerializedName("bairro")
-    private String bairro;
-    private String numero;
-    private String complemento;
+    private String bairro= "";
+    private String numero= "";
+    private String complemento= "";
 
     public String getNumero() {
         return numero;

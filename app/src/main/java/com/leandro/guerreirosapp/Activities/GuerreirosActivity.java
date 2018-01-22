@@ -80,12 +80,7 @@ public class GuerreirosActivity extends AppCompatActivity
             }
         }).start();
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-        });
+
 
         if(getIntent().getStringExtra("fragment") != null) {
             if (getIntent().getStringExtra("fragment").equals("alunos")) {

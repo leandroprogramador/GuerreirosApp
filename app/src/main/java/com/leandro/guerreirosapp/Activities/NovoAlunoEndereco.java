@@ -38,10 +38,12 @@ import com.leandro.guerreirosapp.R;
 public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocusChangeListener{
 
     Toolbar toolbar;
-    EditText editCep, editEndereco, editBairro, editCidade;
+    EditText editCep, editEndereco, editBairro, editCidade, editNumero, editCompl;
     MaterialSpinner ufSpinner;
     ProgressBar progress;
     Gson gson;
+    Aluno aluno;
+    String action;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -62,6 +64,8 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
         editEndereco = findViewById(R.id.edit_end);
         editBairro = findViewById(R.id.edit_bairro);
         editCidade = findViewById(R.id.edit_cidade);
+        editNumero = findViewById(R.id.edit_num);
+        editCompl = findViewById(R.id.edit_compl);
         ufSpinner = findViewById(R.id.uf_spinner);
         ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_dropdown_item,
@@ -70,16 +74,36 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
         editCep.addTextChangedListener(MaskUtil.insert(editCep, MaskType.CEP));
         editCep.setOnFocusChangeListener(this);
 
+        aluno = gson.fromJson(getIntent().getStringExtra("aluno"), Aluno.class);
+        action = getIntent().getStringExtra("action");
+
+        if(action.equals("edit")){
+            editCep.setText(aluno.getEndereco().getCep());
+            editEndereco.setText(aluno.getEndereco().getEndereco());
+            editBairro.setText(aluno.getEndereco().getBairro());
+            editCidade.setText(aluno.getEndereco().getCidade());
+            editNumero.setText(aluno.getEndereco().getNumero());
+            editCompl.setText(aluno.getEndereco().getComplemento());
+            for(int i =0; i<ufSpinner.getItems().size(); i++){
+                if(ufSpinner.getItems().get(i).equals(aluno.getEndereco().getUf())){
+                    ufSpinner.setSelectedIndex(i);
+
+                }
+            }
+        }
+
 
     }
 
     public void cadastrar(View view){
         progress.setVisibility(View.VISIBLE);
-        Aluno aluno = gson.fromJson(getIntent().getStringExtra("aluno"), Aluno.class);
+
         String cep = editCep.getText().toString();
         String endereco = editEndereco.getText().toString();
         String bairro = editBairro.getText().toString();
         String cidade = editCidade.getText().toString();
+        String num = editNumero.getText().toString();
+        String compl = editCompl.getText().toString();
         String estado = ufSpinner.getItems().get(ufSpinner.getSelectedIndex()).toString();
 
         Endereco mEndereco = new Endereco();
@@ -87,6 +111,8 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
         mEndereco.setEndereco(endereco);
         mEndereco.setBairro(bairro);
         mEndereco.setCidade(cidade);
+        mEndereco.setNumero(num);
+        mEndereco.setComplemento(compl);
         mEndereco.setUf(estado);
 
         aluno.setEndereco(mEndereco);
@@ -104,7 +130,7 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
         String json = gson.toJson(aluno);
         Intent intent = new Intent(NovoAlunoEndereco.this, NovoAlunoModalidade.class);
         intent.putExtra("aluno", json);
-        intent.putExtra("action", "new");
+        intent.putExtra("action", action);
         startActivity(intent);
 
     }

@@ -1,5 +1,6 @@
 package com.leandro.guerreirosapp.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
 import com.leandro.guerreirosapp.Helper.CookieHelper;
+import com.leandro.guerreirosapp.Helper.DateHelper;
 import com.leandro.guerreirosapp.Helper.MaskType;
 import com.leandro.guerreirosapp.Helper.MaskUtil;
 import com.leandro.guerreirosapp.Helper.ValidationHelper;
@@ -33,21 +35,24 @@ public class NovoAlunoDados extends AppCompatActivity {
     ProgressBar progress;
     Calendar calendar = Calendar.getInstance();
     Aluno aluno;
+    String action = "new";
+    Gson gson = new Gson();
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novo_aluno);
-        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        progress = (ProgressBar) findViewById(R.id.progressBar);
-        nomeEdit = (EditText) findViewById(R.id.edit_nome);
-        emailEdit = (EditText) findViewById(R.id.edit_email);
-        telefoneEdit = (EditText) findViewById(R.id.edit_telefone);
-        rgEdit = (EditText) findViewById(R.id.edit_rg);
-        cpfEdit = (EditText) findViewById(R.id.edit_cpf);
-        dataNascEdit = (EditText) findViewById(R.id.edit_nasc);
-        radioBtF = (RadioButton) findViewById(R.id.rdFeminino);
-        radioBtM = (RadioButton) findViewById(R.id.rdMasculino);
+        toolbar = findViewById(R.id.my_toolbar);
+        progress = findViewById(R.id.progressBar);
+        nomeEdit = findViewById(R.id.edit_nome);
+        emailEdit = findViewById(R.id.edit_email);
+        telefoneEdit = findViewById(R.id.edit_telefone);
+        rgEdit = findViewById(R.id.edit_rg);
+        cpfEdit = findViewById(R.id.edit_cpf);
+        dataNascEdit = findViewById(R.id.edit_nasc);
+        radioBtF = findViewById(R.id.rdFeminino);
+        radioBtM = findViewById(R.id.rdMasculino);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Dados Pessoais");
@@ -71,6 +76,25 @@ public class NovoAlunoDados extends AppCompatActivity {
         telefoneEdit.addTextChangedListener(MaskUtil.insert(telefoneEdit, MaskType.TELEFONE));
         rgEdit.addTextChangedListener(MaskUtil.insert(rgEdit, MaskType.RG));
         cpfEdit.addTextChangedListener(MaskUtil.insert(cpfEdit, MaskType.CPF));
+
+        action = getIntent().getStringExtra("action");
+        if(action.equals("edit")){
+            aluno = gson.fromJson(getIntent().getStringExtra("aluno"), Aluno.class);
+            nomeEdit.setText(aluno.getNome());
+            emailEdit.setText(aluno.getEmail());
+            telefoneEdit.setText(aluno.getTelefone());
+            rgEdit.setText(aluno.getRg());
+            cpfEdit.setText(aluno.getCpf());
+            dataNascEdit.setText(DateHelper.timeStampToBr(aluno.getNasc()));
+            if(aluno.getSexo().equals("M")){
+                radioBtM.setChecked(true);
+            }
+            if(aluno.getSexo().equals("F")){
+                radioBtM.setChecked(true);
+            }
+        } else{
+            aluno = new Aluno();
+        }
     }
 
     @Override
@@ -101,9 +125,10 @@ public class NovoAlunoDados extends AppCompatActivity {
             progress.setVisibility(View.INVISIBLE);
         }
         else{
-            aluno = new Aluno();
-            final String id = nome.toLowerCase().trim().replace(" ", "_") + ValidationHelper.toSha256(nome + calendar.getTimeInMillis());
-            aluno.setEntityID(id);
+            if(action.equals("new")) {
+                final String id = nome.toLowerCase().trim().replace(" ", "_") + ValidationHelper.toSha256(nome + calendar.getTimeInMillis());
+                aluno.setEntityID(id);
+            }
             aluno.setCadastradoPor(getIntent().getStringExtra("userID"));
             aluno.setCadastradoEm(calendar.getTimeInMillis());
             aluno.setNome(nome);
@@ -130,11 +155,11 @@ public class NovoAlunoDados extends AppCompatActivity {
 
                         }
                     });
-                    Gson gson = new Gson();
+
                     String json = gson.toJson(aluno);
                     Intent intent = new Intent(NovoAlunoDados.this, NovoAlunoEndereco.class);
                     intent.putExtra("aluno", json);
-                    intent.putExtra("action", "new");
+                    intent.putExtra("action", action);
                     startActivity(intent);
                 }
             }).start();
