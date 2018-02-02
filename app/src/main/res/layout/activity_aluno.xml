@@ -132,6 +132,7 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/tvIdade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvDataNasc"
@@ -164,7 +165,7 @@
                     android:src="@drawable/email" />
 
                 <TextView
-                    android:id="@+id/tvNumber4"
+                    android:id="@+id/tvEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -198,7 +199,7 @@
                     android:visibility="visible" />
 
                 <TextView
-                    android:id="@+id/tvNumber5"
+                    android:id="@+id/tvTelefone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -245,7 +246,7 @@
                     android:textColor="#212121" />
 
                 <TextView
-                    android:id="@+id/tvNumber8"
+                    android:id="@+id/tvRG"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber7"
@@ -259,9 +260,10 @@
                     android:textColor="#727272" />
 
                 <TextView
+                    android:id="@+id/tvCPF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvNumber8"
+                    android:layout_below="@id/tvRG"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_toEndOf="@id/ivContactItem7"
@@ -312,6 +314,7 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/tvEndereco"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber3"
@@ -366,6 +369,7 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/tvModalidade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber9"
@@ -412,6 +416,7 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/tvProfessor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber10"
@@ -459,6 +464,7 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/tvDataInicio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber11"
@@ -506,6 +512,7 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/tvPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber12"
@@ -552,6 +559,7 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/tvRegistro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber13"
@@ -598,6 +606,7 @@
                     android:textColor="#212121" />
 
                 <TextView
+                    android:id="@+id/tvIsento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvNumber14"
@@ -613,12 +622,39 @@
 
             </RelativeLayout>
 
+
+
+
+
+
+
             <View xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:background="#B6B6B6" />
+
+            <TextView
+                android:id="@+id/tvNumber15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/ivContactItem14"
+                android:layout_toRightOf="@id/ivContactItem14"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Faixas"
+                android:layout_marginTop="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_graduacoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:lisitem="@layout/row_graduacoes"
+                />
 
 
         </LinearLayout>

@@ -123,11 +123,13 @@ public class NovaFaixaActivity extends AppCompatActivity {
     }
 
     public void addFaixa(View view){
-        if(grauSpinner.getSelectedItemId() != 0) {
+
             long data = calendar.getTimeInMillis();
             Faixa faixa = (Faixa) faixasSpinner.getSelectedItem();
             String grau = grauSpinner.getSelectedItem().toString();
-
+            if(grau.equals("Selecione")){
+                grau = "";
+            }
             Graduacao graduacao = new Graduacao(faixa, data, grau);
             Gson gson = new Gson();
             String json = gson.toJson(graduacao);
@@ -135,10 +137,8 @@ public class NovaFaixaActivity extends AppCompatActivity {
             returnIntent.putExtra("data",json);
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
-        }
-        else{
-            CookieHelper.createCookieToast(this,"Erro", "É necessário selecionar o grau da faixa", "Entendi",R.drawable.ic_error_white_24dp, R.color.colorPrimaryDark);
-        }
+
+
 
 
 

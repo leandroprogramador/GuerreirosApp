@@ -129,7 +129,7 @@ public class NovoAlunoModalidade extends AppCompatActivity {
             CookieHelper.createCookieToast(this,"Erro!", "Selecione pelo menos uma modalidade!", "Entendi", R.drawable.ic_error_white_24dp, R.color.colorPrimaryDark);
         }
         else {
-            String peso = editPeso.getText().toString();
+            String peso = editPeso.getText().toString().equals("") ?  "0" :  editPeso.getText().toString();
             long dataInicio = calendar.getTimeInMillis();
             String registro = editRegistro.getText().toString();
             if (chkJiu.isChecked()) {

@@ -73,7 +73,7 @@ public class NovoAlunoDados extends AppCompatActivity {
             }
         });
 
-        telefoneEdit.addTextChangedListener(MaskUtil.insert(telefoneEdit, MaskType.TELEFONE));
+        telefoneEdit.addTextChangedListener(MaskUtil.insert(telefoneEdit, MaskType.CELULAR));
         rgEdit.addTextChangedListener(MaskUtil.insert(rgEdit, MaskType.RG));
         cpfEdit.addTextChangedListener(MaskUtil.insert(cpfEdit, MaskType.CPF));
 

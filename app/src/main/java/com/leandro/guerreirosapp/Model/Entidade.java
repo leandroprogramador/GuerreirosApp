@@ -21,7 +21,7 @@ public class Entidade {
     private String cpf;
     private long nasc;
     private String sexo;
-    private String peso;
+    private String peso ="0";
     private Endereco endereco = new Endereco();
     private long ultimaAlteracao;
     private String cadastradoPor;

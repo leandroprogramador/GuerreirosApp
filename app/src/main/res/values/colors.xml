@@ -7,4 +7,5 @@
     <color name="textDisabled">#AEB2B8</color>
     <color name="colorGrey">#777</color>
     <color name="colorSuccess">#009688</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>

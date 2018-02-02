@@ -1,5 +1,6 @@
 package com.leandro.guerreirosapp.Activities;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,16 +22,17 @@ public class CadastroActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     EditText editUser, editEmail, editSenha, editConfSenha;
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        editUser = (EditText) findViewById(R.id.edit_user);
-        editEmail = (EditText) findViewById(R.id.edit_email);
-        editSenha = (EditText) findViewById(R.id.edit_senha);
-        editConfSenha = (EditText) findViewById(R.id.edit_conf_senha);
+        toolbar = findViewById(R.id.my_toolbar);
+        editUser = findViewById(R.id.edit_user);
+        editEmail = findViewById(R.id.edit_email);
+        editSenha = findViewById(R.id.edit_senha);
+        editConfSenha = findViewById(R.id.edit_conf_senha);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Novo Usuário");

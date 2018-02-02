@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +46,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
     final int CALL_PHONE_PERMISSION = 1;
     ProgressBar progress;
     String userID;
-
+    TextView txtNoUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +67,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
        });
        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         progress = (ProgressBar) view.findViewById(R.id.progressBar);
+        txtNoUser = view.findViewById(R.id.txt_no_aluno);
        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mDataset = new ArrayList<>();
@@ -84,6 +86,13 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
                         for (DataSnapshot gSnapshots : dataSnapshot.getChildren()){
                              Aluno aluno = gSnapshots.getValue(Aluno.class);
                             adapter.addItem(aluno);
+                        }
+                        if(adapter.getItemCount() == 0){
+                            recyclerView.setVisibility(View.GONE);
+                            txtNoUser.setVisibility(View.VISIBLE);
+                        } else{
+                            recyclerView.setVisibility(View.VISIBLE);
+                            txtNoUser.setVisibility(View.GONE);
                         }
                         progress.setVisibility(View.GONE);
                     }

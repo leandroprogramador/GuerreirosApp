@@ -86,7 +86,7 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
             editCompl.setText(aluno.getEndereco().getComplemento());
             for(int i =0; i<ufSpinner.getItems().size(); i++){
                 if(ufSpinner.getItems().get(i).equals(aluno.getEndereco().getUf())){
-                    ufSpinner.setSelectedIndex(i);
+                    ufSpinner.setSelectedIndex(i+1);
 
                 }
             }
@@ -104,7 +104,7 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
         String cidade = editCidade.getText().toString();
         String num = editNumero.getText().toString();
         String compl = editCompl.getText().toString();
-        String estado = ufSpinner.getItems().get(ufSpinner.getSelectedIndex()).toString();
+        String estado = ufSpinner.getText().toString();
 
         Endereco mEndereco = new Endereco();
         mEndereco.setCep(cep);
@@ -182,7 +182,6 @@ public class NovoAlunoEndereco extends AppCompatActivity implements View.OnFocus
                                @Override
                                public void run() {
                                    progress.setVisibility(View.INVISIBLE);
-                                   Toast.makeText(NovoAlunoEndereco.this, "Cep inválido, não foi possível encontrar endereço correspondente.", Toast.LENGTH_SHORT).show();
                                    CookieHelper.createCookieToast(NovoAlunoEndereco.this, "Erro", "Cep inválido, não foi possível encontrar endereço correspondente.", "Entendi", R.drawable.ic_signal_cellular_connected_no_internet_4_bar_white_24dp, R.color.colorPrimaryDark);
 
                                }
