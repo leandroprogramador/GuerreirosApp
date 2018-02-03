@@ -19,10 +19,13 @@ public class Entidade {
     private String email;
     private String rg;
     private String cpf;
-    private String nasc;
+    private long nasc;
     private String sexo;
-    private Double peso;
-    private Endereco endereco;
+    private String peso ="0";
+    private Endereco endereco = new Endereco();
+    private long ultimaAlteracao;
+    private String cadastradoPor;
+    private long cadastradoEm;
 
     public Entidade(String nome, String telefone, String email) {
         this.nome = nome;
@@ -43,7 +46,7 @@ public class Entidade {
     public Entidade() {
     }
 
-    public Entidade(String nome, String telefone, String email, String rg, String cpf, String nasc, String sexo, Double peso, Endereco endereco, String foto) {
+    public Entidade(String nome, String telefone, String email, String rg, String cpf, long nasc, String sexo, String peso, Endereco endereco, String foto) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
@@ -96,11 +99,11 @@ public class Entidade {
         this.cpf = cpf;
     }
 
-    public String getNasc() {
+    public long getNasc() {
         return nasc;
     }
 
-    public void setNasc(String nasc) {
+    public void setNasc(long nasc) {
         this.nasc = nasc;
     }
 
@@ -112,11 +115,11 @@ public class Entidade {
         this.sexo = sexo;
     }
 
-    public Double getPeso() {
+    public String getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(String peso) {
         this.peso = peso;
     }
 
@@ -126,5 +129,29 @@ public class Entidade {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public long getUltimaAlteracao() {
+        return ultimaAlteracao;
+    }
+
+    public void setUltimaAlteracao(long ultimaAlteracao) {
+        this.ultimaAlteracao = ultimaAlteracao;
+    }
+
+    public String getCadastradoPor() {
+        return cadastradoPor;
+    }
+
+    public void setCadastradoPor(String cadastradoPor) {
+        this.cadastradoPor = cadastradoPor;
+    }
+
+    public long getCadastradoEm() {
+        return cadastradoEm;
+    }
+
+    public void setCadastradoEm(long cadastradoEm) {
+        this.cadastradoEm = cadastradoEm;
     }
 }

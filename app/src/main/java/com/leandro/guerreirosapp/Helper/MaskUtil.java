@@ -10,11 +10,12 @@ import android.widget.EditText;
 
 public class MaskUtil {
 
-    private static final String CPFMask = "###.###.###-##";
-    private static final String CNPJMask = "##.###.###/####-##";
-    private static final String RGMask = "##.###.###-#";
-    private static final String TELEFONEMask = "(##) #####-####";
-    private static final String CEPMask = "#####-###";
+    public static final String CPFMask = "###.###.###-##";
+    public static final String CNPJMask = "##.###.###/####-##";
+    public static final String RGMask = "##.###.###-#";
+    public static final String CELMask = "(##) #####-####";
+    public static final String TELEFONEMask = "(##) ####-####";
+    public static final String CEPMask = "#####-###";
 
     public static String unmask(String s) {
         return s.replaceAll("[^0-9]*", "");
@@ -53,6 +54,9 @@ public class MaskUtil {
                     case CEP:
                         mask = CEPMask;
                         break;
+                    case CELULAR:
+                        mask = CELMask;
+                        break;
                     default:
                         mask = getDefaultMask(value);
                         break;
@@ -86,6 +90,29 @@ public class MaskUtil {
             public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
             public void afterTextChanged(Editable s) {}
         };
+    }
+
+    public static String addMask(final String textoAFormatar, final String mask){
+        String formatado = "";
+        int i = 0;
+
+        for (char m : mask.toCharArray()) {
+            if (m != '#') {
+                formatado += m;
+                continue;
+            }
+
+            try {
+                formatado += textoAFormatar.charAt(i);
+            } catch (Exception e) {
+                break;
+            }
+            i++;
+        }
+        if(formatado.contains("--")){
+            formatado = formatado.replace("--", "-0");
+        }
+        return formatado;
     }
 }
 

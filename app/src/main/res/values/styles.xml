@@ -14,6 +14,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TransparentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorTransparent</item>
+    </style>
+
     <style name="EditTextStyle" parent="AppTheme">
         <item name="colorAccent">@color/colorWhite</item>
         <item name="android:textColorPrimary">@color/colorWhite</item>

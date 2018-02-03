@@ -5,5 +5,6 @@ public enum  MaskType {
     CNPJ,
     RG,
     TELEFONE,
+    CELULAR,
     CEP
 }

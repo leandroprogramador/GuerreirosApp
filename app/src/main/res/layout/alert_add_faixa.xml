@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay" />
+
+
+
+    <TextView
+        android:id="@+id/selecione_faixa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_edit_cidade"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="66dp"
+        android:textSize="18dp"
+        android:text="Selecione a Faixa"
+
+        />
+    <Spinner
+        android:id="@+id/faixas_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/selecione_faixa"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_edit_data_grad"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/faixas_spinner">
+
+        <EditText
+            android:id="@+id/edit_data_graduacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/datagraduacao"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/selecione_grau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_edit_data_grad"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:text="Grau"
+
+        />
+
+    <Spinner
+        android:id="@+id/grau_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/selecione_grau"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+    <Button
+        android:layout_margin="10dp"
+        android:id="@+id/btnAddFaixa"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/grau_spinner"
+        android:background="@color/colorPrimary"
+        android:onClick="addFaixa"
+        android:text="@string/Adicionar"
+        android:textColor="@color/colorWhite" />
+</RelativeLayout>

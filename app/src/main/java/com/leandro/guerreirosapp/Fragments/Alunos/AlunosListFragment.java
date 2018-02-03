@@ -16,15 +16,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.leandro.guerreirosapp.Activities.AlunoActivity;
 import com.leandro.guerreirosapp.Activities.NovoAlunoDados;
 import com.leandro.guerreirosapp.Adapter.Alunos.AlunosAdapter;
 import com.leandro.guerreirosapp.Firebase.FirebaseConfig;
 import com.leandro.guerreirosapp.Activities.GuerreirosActivity;
+import com.leandro.guerreirosapp.Helper.SharedHelper;
 import com.leandro.guerreirosapp.Model.Aluno;
 import com.leandro.guerreirosapp.R;
 
@@ -42,6 +46,7 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
     final int CALL_PHONE_PERMISSION = 1;
     ProgressBar progress;
     String userID;
+    TextView txtNoUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,19 +54,20 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions((GuerreirosActivity)getContext(), new String[]{Manifest.permission.CALL_PHONE}, CALL_PHONE_PERMISSION);
         }
-        userID = getArguments().get("userID").toString();
+        userID = SharedHelper.getData(getActivity(), getString(R.string.user_id));
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_alunos_list, container, false);
        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
        fab.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               startActivity(new Intent(getActivity(), NovoAlunoDados.class).putExtra("userID",userID));
+               startActivity(new Intent(getActivity(), NovoAlunoDados.class).putExtra("userID",userID).putExtra("action", "new"));
 
            }
        });
        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         progress = (ProgressBar) view.findViewById(R.id.progressBar);
+        txtNoUser = view.findViewById(R.id.txt_no_aluno);
        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mDataset = new ArrayList<>();
@@ -71,18 +77,24 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
         progress.setVisibility(View.VISIBLE);
        databaseReference =  FirebaseConfig.getFirebase().getReference();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                databaseReference.child("alunos").addValueEventListener(new ValueEventListener() {
+
+                databaseReference.child("alunos").orderByKey().addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         adapter.removeAll();
                         for (DataSnapshot gSnapshots : dataSnapshot.getChildren()){
-                            Aluno aluno = gSnapshots.getValue(Aluno.class);
+                             Aluno aluno = gSnapshots.getValue(Aluno.class);
                             adapter.addItem(aluno);
                         }
+                        if(adapter.getItemCount() == 0){
+                            recyclerView.setVisibility(View.GONE);
+                            txtNoUser.setVisibility(View.VISIBLE);
+                        } else{
+                            recyclerView.setVisibility(View.VISIBLE);
+                            txtNoUser.setVisibility(View.GONE);
+                        }
+                        progress.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -93,17 +105,19 @@ public class AlunosListFragment extends Fragment implements AlunosAdapter.IAluno
 
                 });
 
-            }
-        }).start();
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progress.setVisibility(View.INVISIBLE);
-            }
-        });
+
+
 
        return view;
+    }
+
+    @Override
+    public void onItemClick(Object object) {
+        Aluno aluno = (Aluno) object;
+        Gson gson = new Gson();
+        String json = gson.toJson(aluno);
+        startActivity(new Intent(getActivity(), AlunoActivity.class).putExtra("aluno", json));
     }
 
     @Override

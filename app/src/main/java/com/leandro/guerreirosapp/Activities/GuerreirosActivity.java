@@ -80,14 +80,16 @@ public class GuerreirosActivity extends AppCompatActivity
             }
         }).start();
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-        });
 
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new MainFragment(),"Principal").commit();
+
+        if(getIntent().getStringExtra("fragment") != null) {
+            if (getIntent().getStringExtra("fragment").equals("alunos")) {
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new AlunosListFragment(), "Alunos").commit();
+            }
+        }else {
+
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MainFragment(), "Principal").commit();
+        }
 
 
 
